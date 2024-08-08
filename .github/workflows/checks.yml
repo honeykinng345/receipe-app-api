@@ -4,7 +4,7 @@ name: Checks
 on: [push]
 
 jobs:
-  test-lint:
+  test-lints:
     name: Test and Lint
     runs-on: ubuntu-20.04
     steps:
@@ -15,9 +15,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Test
+      - name: Check Docker Compose Version
+        run: docker-compose --version
+      - name: List Files in Container
+        run: docker-compose run --rm app sh -c "ls -al /app"
+      - name: TEST
         run: docker-compose run --rm app sh -c "python manage.py test"
       - name: Lint
         run: docker-compose run --rm app sh -c "flake8"
-        
-
