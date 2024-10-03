@@ -27,7 +27,7 @@ class PublicUserApiTests(TestCase):
     def test_create_user_success(self):
         """Test creating a user is successful."""
         payload = {
-            'email': 'test@example.com',
+            'email': 'tests@example.com',
             'password': 'testpass123',
             'name': 'Test Name',
         }
@@ -41,7 +41,7 @@ class PublicUserApiTests(TestCase):
     def test_user_with_email_exists_error(self):
         """Test error returned if user with email exists."""
         payload = {
-            'email': 'test@example.com',
+            'email': 'tests@example.com',
             'password': 'testpass123',
             'name': 'Test Name',
         }
@@ -53,7 +53,7 @@ class PublicUserApiTests(TestCase):
     def test_password_too_short_error(self):
         """Test an error is returned if password less than 5 chars."""
         payload = {
-            'email': 'test@example.com',
+            'email': 'tests@example.com',
             'password': 'pw',
             'name': 'Test name',
         }
@@ -69,8 +69,8 @@ class PublicUserApiTests(TestCase):
         """Test generates token for valid credentials."""
         user_details = {
             'name': 'Test Name',
-            'email': 'test@example.com',
-            'password': 'test-user-password123',
+            'email': 'tests@example.com',
+            'password': 'tests-user-password123',
         }
 
         create_user(**user_details)
@@ -89,7 +89,7 @@ class PublicUserApiTests(TestCase):
         """Test returns error if credentials invalid."""
         user_details = {
             'name': 'Test Name',
-            'email': 'test@example.com',
+            'email': 'tests@example.com',
             'password': 'goodpass',
         }
 
@@ -107,7 +107,7 @@ class PublicUserApiTests(TestCase):
 
     # TODO Rename this here and in `test_create_token_bad_credentials`, `test_create_token_email_not_found` and `test_create_token_blank_password`
     def _extracted_from_test_create_token_blank_password_11(self, arg0):
-        payload = {'email': 'test@example.com', 'password': arg0}
+        payload = {'email': 'tests@example.com', 'password': arg0}
         res = self.client.post(TOKEN_URL, payload)
         self.assertNotIn('token', res.data)
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
@@ -118,7 +118,7 @@ class PrivateUserApiTests(TestCase):
 
     def setUp(self):
         self.user = create_user(
-            email='test@example.com',
+            email='tests@example.com',
             password='testpass123',
             name='Test Name',
         )

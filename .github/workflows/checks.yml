@@ -31,13 +31,13 @@ jobs:
         run: docker-compose run --rm app sh -c "/py/bin/python --version"
 
       - name: Verify `manage.py` Existence
-        run: docker-compose run --rm app sh -c "test -f /app/manage.py && echo 'manage.py found' || echo 'manage.py missing'"
+        run: docker-compose run --rm app sh -c "tests -f /app/manage.py && echo 'manage.py found' || echo 'manage.py missing'"
 
       - name: Verify flake8 Installation
         run: docker-compose run --rm app sh -c "/py/bin/flake8 --version || echo 'flake8 not found'"
 
       - name: Run Tests
-        run: docker-compose run --rm app sh -c "/py/bin/python /app/manage.py test"
+        run: docker-compose run --rm app sh -c "/py/bin/python /app/manage.py tests"
 
       - name: Lint
         run: docker-compose run --rm app sh -c "/py/bin/flake8"

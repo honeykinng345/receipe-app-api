@@ -1,0 +1,18 @@
+for make migrations
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+
+*****************************************************************
+for run test
+docker-compose run --rm app sh -c "python manage.py test"
+*****************************************************************
+
+for create new app in django
+docker-compose run --rm app sh -c "python manage.py startapp nameofapp"
+*****************************************************************
+close all containers
+docker-compose down
+*****************************************************************
+run all containers
+docker-compose up
+
+*****************************************************************
